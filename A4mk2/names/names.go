@@ -16,7 +16,7 @@ type BabyBoy struct {
 }
 
 func getinfoboys() []string {
-	file, e := os.Open("../boynames2015.txt")
+	file, e := os.Open("boynames2015.txt")
 	if e != nil {
 		panic(e)
 	}
@@ -61,7 +61,7 @@ type BabyGirl struct {
 }
 
 func getinfogirl() []string {
-	file, e := os.Open("../girlnames2015.txt")
+	file, e := os.Open("girlnames2015.txt")
 	if e != nil {
 		panic(e)
 	}

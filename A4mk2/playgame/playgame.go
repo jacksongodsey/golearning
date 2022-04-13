@@ -1,14 +1,15 @@
-package main
+package playgame
 
 import (
-	"A4/names"
 	"fmt"
 	"math/rand"
 	"os"
 	"time"
+
+	"github.com/jacksongodsey/golearning/A4mk2/names"
 )
 
-func playgame() {
+func Playgame() {
 	boyoutput := names.Boysclass()
 	girloutput := names.Girlclass()
 	rand.Seed(time.Now().UnixNano())
@@ -28,7 +29,7 @@ func playgame() {
 		user_input := ""
 		fmt.Scanln(&user_input)
 		if user_input == "y" {
-			playgame()
+			Playgame()
 		}
 		if user_input == "n" {
 			fmt.Println("Goodbye!")
@@ -41,15 +42,11 @@ func playgame() {
 		user_input := ""
 		fmt.Scanln(&user_input)
 		if user_input == "y" {
-			playgame()
+			Playgame()
 		}
 		if user_input == "n" {
 			fmt.Println("Goodbye!")
 			os.Exit(0)
 		}
 	}
-}
-
-func main() {
-	playgame()
 }
