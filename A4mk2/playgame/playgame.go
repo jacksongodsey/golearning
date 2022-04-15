@@ -28,12 +28,17 @@ func Playgame() {
 		fmt.Println("Would you like to play again (y/n)?")
 		user_input := ""
 		fmt.Scanln(&user_input)
-		if user_input == "y" {
-			Playgame()
-		}
-		if user_input == "n" {
-			fmt.Println("Goodbye!")
-			os.Exit(0)
+		for {
+			if user_input == "y" {
+				Playgame()
+			}
+			if user_input == "n" {
+				fmt.Println("Goodbye!")
+				os.Exit(0)
+			} else {
+				fmt.Println("Please enter yes or no (y/n).")
+				fmt.Scanln(&user_input)
+			}
 		}
 	}
 	if user_guess != right_guess {
@@ -41,12 +46,17 @@ func Playgame() {
 		fmt.Println("Would you like to play again (y/n)?")
 		user_input := ""
 		fmt.Scanln(&user_input)
-		if user_input == "y" {
-			Playgame()
-		}
-		if user_input == "n" {
-			fmt.Println("Goodbye!")
-			os.Exit(0)
+		for {
+			if user_input == "y" {
+				Playgame()
+			}
+			if user_input == "n" {
+				fmt.Println("Goodbye!")
+				os.Exit(0)
+			} else {
+				fmt.Println("Please enter yes or no (y/n).")
+				fmt.Scanln(&user_input)
+			}
 		}
 	}
 }
