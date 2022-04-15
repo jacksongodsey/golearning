@@ -27,27 +27,19 @@ func openfile() []string {
 	return slice
 }
 
-func build_dict() map[string][]string {
+func build_dict(slice []string) map[string][]string {
 	dictionary := make(map[string][]string)
-	slice := openfile()
 	for _, str := range slice {
 		f := strings.Trim(str, " ")
 		t := strings.Split(f, "")
 		sort.Strings(t)
 		w := strings.Join(t, "")
-		//l := w
 		dictionary[w] = append(dictionary[w], f)
-		//if reflect.DeepEqual(dictionary[w], l) {
-		//	dictionary[w] = append(dictionary[w], f)
-		//} else {
-		//	dictionary[w] = append(dictionary[w], f)
-		//}
 	}
 	return dictionary
 }
 
-func unscrambled(user string) []string {
-	output := build_dict()
+func unscrambled(user string, output map[string][]string) []string {
 	temp := strings.Split(user, "")
 	sort.Strings(temp)
 	sorted := strings.Join(temp, "")
@@ -55,21 +47,26 @@ func unscrambled(user string) []string {
 	return final
 }
 
-func playgame() {
+func playgame(output map[string][]string) {
 	user_input := ""
 	fmt.Print("Please enter a jumble to solve: ")
 	fmt.Scanln(&user_input)
-	done := unscrambled(user_input)
-	fmt.Printf("%v unscrambles to %v\n", user_input, done)
-
+	done := unscrambled(user_input, output)
+	if done == nil {
+		fmt.Printf("%v does not unscrabmle to any known word\n", user_input)
+	} else {
+		fmt.Printf("%v unscrambles to %v\n", user_input, done)
+	}
 	hardcoded := make([]string, 0)
 	hardcoded = append(hardcoded, "enost", "asewes", "aaabcs")
 	for i := range hardcoded {
-		done = unscrambled(hardcoded[i])
+		done = unscrambled(hardcoded[i], output)
 		fmt.Printf("%v unscrambles to %v\n", hardcoded[i], done)
 	}
 }
 
 func main() {
-	playgame()
+	slice := openfile()
+	output := build_dict(slice)
+	playgame(output)
 }
